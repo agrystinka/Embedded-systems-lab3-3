@@ -12,6 +12,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     static int n;
     static int mrt;
+    static int mutationCounter;
     static double mut_chanse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +34,15 @@ public class MainActivity extends AppCompatActivity {
                 int id = Integer.parseInt(d.getText().toString());
                 int iy = Integer.parseInt(y.getText().toString());
                 int iit = Integer.parseInt(it.getText().toString());
-                n=0;
+                n = 0;
                 mrt = 0;
-                mut_chanse=0.02;
+                mutationCounter = 0;
+                mut_chanse = 0.02;
                 int[] rs = Genetic(iy,ia,ib,ic,id,iit);
                 tv.setText("Ans : ( "+rs[0]+" ,"+rs[1]+" ,"+rs[2]+" ,"+rs[3]+" )\n"
                         +"Number of iterations: "+n+" out of "+iit+" possible \n"
-                        +"Number of mutations: "+mrt+" with mutation chanse " + mut_chanse);
+                        +"Number of mutations: "+mrt+" with mutation chanse " + mut_chanse + "\n"
+                        +"Number of mutations is: " + mutationCounter + "\n");
             }
         });
     }
@@ -100,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
             if(mutationR<=mut_chanse) {
                 mutate(iPop,res);
                 mrt++;
+                mutationCounter++;
             }
             n++;
         }
